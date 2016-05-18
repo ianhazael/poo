@@ -81,7 +81,14 @@ class cajeros_model extends common implements crud {
     }
 
     public function view_by_id() {
-        
+        $id = filter_input(INPUT_GET, 'Id', FILTER_VALIDATE_INT);
+        if ($id !== FALSE) {
+            $query = 'SELECT * FROM cajeros WHERE Id = :id';
+            $resultado = $this->db->prepare($query);
+            $consulta = $resultado->execute(array(":id" => $id));
+            $return = $consulta->fetchAll();
+            var_dump($return);
+        }
     }
 
 }

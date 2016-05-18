@@ -15,6 +15,9 @@ class clientes_controller {
             }
             header('location:/mvc_pdo/?controller=clientes');
         } else {
+            if(isset($_GET['id'])){
+                $cliente = $clientes->individual_by_id();
+            }
             $arrClientes = $clientes->get_tabla();
             require 'views/clientes_view.php';
         }

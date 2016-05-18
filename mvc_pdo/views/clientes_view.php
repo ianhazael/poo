@@ -6,6 +6,18 @@
     <h1>Lista de clientes</h1>
     </head>
     <body>
+        <?php if(isset($cliente)) {
+            echo '<h3>Cliente individual</h3>';
+            echo 'ID: '.$cliente['Id'].'<br>';
+            echo 'Fecha: '.$cliente['Fecha_Creacion'].'<br>';
+            echo 'RFC: '.$cliente['RFC'].'<br>';
+            echo 'Nombre: '.$cliente['Nombres'].' '.$cliente['Apellidos'].'<br>';
+            echo 'Direcciion: '.$cliente['Direccion'].'<br>';
+            echo 'Correo: '.$cliente['Correo'].'<br>';
+            echo 'Ciudad: '.$cliente['Ciudad'].'<br>';
+            echo 'Estado: '.$cliente['Estado'].'<br>';
+            echo 'Pais: '.$cliente['Pais'].'<br>';
+        } ?>
         <table border="1">
             <tr>
                 <td>Id</td><td>Fecha Creacion</td><td>RFC</td><td>Nombres</td><td>Apellidos</td><td>Direccion</td><td>Correo</td><td>Ciudad</td><td>Estado</td><td>Pais</td><td>Borrar</td><td>Actualizar</td>
@@ -14,7 +26,7 @@
             <?php foreach ($arrClientes as $cliente) { ?>
                 <tr>        
                 <form method="post" action="<?php $_SERVER["PHP_SELF"]; ?>">
-                    <td><?php echo $cliente['Id']; ?></td>
+                    <td><a href="/mvc_pdo/?controller=clientes&id=<?php echo $cliente['Id']; ?>"><?php echo $cliente['Id']; ?></a></td>
                     <td><input type=CURRENT_TIMESTAMP  name="Fecha_Creacion"   value="<?php echo $cliente['Fecha_Creacion']; ?>"></td>
                     <td><input type="text" name="RFC"               value="<?php echo $cliente['RFC']; ?>"></td>
                     <td><input type="text" name="Nombres"           value="<?php echo $cliente['Nombres']; ?>"></td> 
@@ -36,7 +48,7 @@
             padding-right: 15px;
         }
     </style>
-
+    
 
     <h3>Agregar cliente</h3>
     <form method="post" action="<?php $_SERVER["PHP_SELF"]; ?>">
